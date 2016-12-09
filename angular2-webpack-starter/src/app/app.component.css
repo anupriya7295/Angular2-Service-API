@@ -1,0 +1,20 @@
+html, body{
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+span.active {
+  background-color: gray;
+}
+
+button[disabled] {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+control-messages div {
+  color: #E82C0C;
+  margin: 6px 0;
+}

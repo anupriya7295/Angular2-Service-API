@@ -1,0 +1,5 @@
+/*styles for home content only*/
+.mdl-card {
+    overflow: visible;
+    z-index: auto;
+}

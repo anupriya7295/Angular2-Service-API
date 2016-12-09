@@ -1,0 +1,67 @@
+<div style="padding:6%;">
+<div class="mdl-card mdl-shadow--6dp" style="width:40%;margin:auto;">
+  <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+    <h2 class="mdl-card__title-text">Signup</h2>
+  </div>
+  <div class="mdl-card__supporting-text" style="overflow: visible;">
+    <form [formGroup]="myForm"  novalidate (ngSubmit)="save(myForm.value)">
+      <div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"  style="width:100%;">
+        <input class="mdl-textfield__input" type="text" id="sample3" formControlName="name" >
+        <control-messages [control]="myForm.controls.name"></control-messages>
+        <label class="mdl-textfield__label" for="sample3">Name</label>
+      </div>
+
+    </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+        <input class="mdl-textfield__input" type="text" id="email" formControlName="email" />
+        <label class="mdl-textfield__label" for="email">Email</label>
+        <control-messages [control]="myForm.controls.email"></control-messages>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+        <input class="mdl-textfield__input" type="text" id="phone" formControlName="phone"/>
+        <label class="mdl-textfield__label" for="phone">Phone</label>
+        <control-messages [control]="myForm.controls.phone"></control-messages>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+        <input class="mdl-textfield__input" type="password" id="userpass" formControlName="password" (change)="savePassword()" />
+        <label class="mdl-textfield__label" for="userpass">Password</label>
+        <control-messages [control]="myForm.controls.password"></control-messages>
+      </div>
+      <div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+        <input class="mdl-textfield__input" type="password" id="confirmPassword" formControlName="confirmPassword" (change)="saveconfirmPassword()"/>
+        <label class="mdl-textfield__label" for="confirmPassword">Confirm Passwrd</label>
+          <control-messages [control]="myForm.controls.confirmPassword" ></control-messages>
+      </div>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="width:100%;">
+
+               <div class="getmdl-select__fullwidth getmdl-select ">
+                <input class="mdl-textfield__input" type="text" id="sample1" [value]="drop" tabIndex="-1">
+                <label for="sample1">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                </label>
+                <label for="sample1" class="mdl-textfield__label">CompanyType</label>
+                <ul for="sample1" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                    <li class="mdl-menu__item" *ngFor="let p of roles" [value]="p" (click)="setRole(p)">
+                      {{p}}
+                    </li>
+                </ul>
+              </div>
+    </div>
+
+      <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored "  [disabled]="!myForm.valid" type="submit">Register</button>
+      </div>
+
+
+
+    </form>
+  </div>
+
+</div>
+</div>
