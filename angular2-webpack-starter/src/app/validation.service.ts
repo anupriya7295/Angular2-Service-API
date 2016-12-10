@@ -6,7 +6,7 @@ export class ValidationService {
     static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
         let config = {
             'required': 'Required',
-            'invalidCreditCard': 'Is invalid credit card number',
+            'invalidCreditCard': 'Is invalid card number',
             'invalidEmailAddress': 'Invalid email address',
             'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
             'minlength': `Minimum length ${validatorValue.requiredLength}`,
@@ -25,6 +25,7 @@ export class ValidationService {
           return {'invalidPattern':true};
       }
     }
+
     static phoneNumber(control){               /*user defined*/
       if(control.value.match(/(7|8|9)\d{9}/)) {
         return null;
@@ -33,18 +34,15 @@ export class ValidationService {
       }
     }
 
-    static confirmPassword(newpassword,confirmPassword){
-      if(newpassword!=null && confirmPassword!=null){
+    static confirmPassword(newpassword : any,confirmPassword : any){
+      console.log("inside confirm");
       if(newpassword === confirmPassword) {
         return null;
       } else {
         return {'PasswordWrong':true};
       }
-    } else {
-      return null;
     }
 
-    }
 
 
     static creditCardValidator(control) {
