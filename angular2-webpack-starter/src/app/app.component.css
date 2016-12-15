@@ -5,6 +5,7 @@ html, body{
 
 span.active {
   background-color: gray;
+    
 }
 
 button[disabled] {

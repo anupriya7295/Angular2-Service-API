@@ -14,11 +14,7 @@ import { UserService } from './user.service';
 })
 export class HomeComponent {
 roles=["Contractor","Funder","Beneficier"];
-
-drop='  ';
 show: boolean = false;
-
-public myForm: FormGroup; // our model driven form
 user={
   name:'',
   email:'',
@@ -29,9 +25,7 @@ user={
   bankName:'',
   role:'',
 
-}
-
-
+};
 
   // TypeScript public modifiers
   constructor(public appState: AppState ,private formBuilder: FormBuilder,private UserService : UserService) {
@@ -58,5 +52,7 @@ user={
       this.show = false;
     }
   }
+
+  
 
 }

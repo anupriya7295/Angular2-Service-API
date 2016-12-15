@@ -15,10 +15,8 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
-import { ControlMessagesComponent } from './control-messages.component';
-import { ValidationService } from './validation.service';
 import { UserService } from './home/user.service';
-
+import { EqualValidator } from './equal-validator.directive';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -40,7 +38,7 @@ type StoreType = {
   declarations: [
     AppComponent,
     HomeComponent,
-    ControlMessagesComponent
+    EqualValidator
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -52,7 +50,6 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    ValidationService,
     UserService
   ]
 })
