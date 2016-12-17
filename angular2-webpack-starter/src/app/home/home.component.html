@@ -1,108 +1,129 @@
-<div style="padding:1%;">
-  <div class="mdl-card mdl-shadow--6dp" style="width:40%;margin:auto;margin-left:55%;">
-    <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-      <h2 class="mdl-card__title-text">Signup</h2>
-    </div>
-    <div class="mdl-card__supporting-text" style="overflow: visible;">
-      <form #form="ngForm"  novalidate (ngSubmit)="logForm()" >
+<div class="mdl-grid">
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
-            <i class="mdl-textfield__icon  material-icons" style="">person</i>
-            <input class="mdl-textfield__input" type="text" id="name" #name="ngModel" requried minlength="5"
-            pattern="[A-Za-z]*" [(ngModel)]="user.name" name="name" (ngModelChange)="user.name = $event" >
-            <label class="mdl-textfield__label" for="name">Name</label>
+  <div class="mdl-cell mdl-cell--7-col mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+
+  <div class="mdl-cell mdl-cell--5-col mdl-cell--11-col-phone mdl-cell--9-col-tablet ">
+    <div style="padding:1%;">
+      <div class="mdl-card mdl-shadow--6dp" style="width:100%;margin:auto;margin-top:3%;">
+        <!-- card title-->
+        <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+          <h2 class="mdl-card__title-text">Signup</h2>
+        </div>
+
+        <div class="mdl-card__supporting-text" style="overflow: visible;">
+          <!-- card content -->
+          <form #form="ngForm" novalidate (ngSubmit)="logForm()">
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+              <i class="mdl-textfield__icon  material-icons" style="">person</i>
+              <input class="mdl-textfield__input" type="text" id="name" #name="ngModel" requried minlength="5" pattern="[A-Za-z]*" [(ngModel)]="user.name" name="name" (ngModelChange)="user.name = $event" (change)="check()">
+              <label class="mdl-textfield__label" for="name">Name</label>
               <div class="mdl-textfield__error">
                 <div [hidden]="name.valid || (name.pristine &&  !form.submitted)">
                   Username is required (minimum 5 characters).
                 </div>
               </div>
-          </div>
+            </div>
 
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
-            <i class="mdl-textfield__icon  material-icons" style="">mail</i>
-            <label class="mdl-textfield__label" for="email">Email</label>
-            <input class="mdl-textfield__input" type="email"  name="email" [ngModel]="user.email"
-           #email="ngModel" requried
-           pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" (ngModelChange)="user.email = $event">
-            <div class="mdl-textfield__error">
-              <div [hidden]="email.valid || (email.pristine && !form.submitted)">
-                Email is required and format should be <i>john@doe.com</i>.
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+              <i class="mdl-textfield__icon  material-icons" style="">mail</i>
+              <label class="mdl-textfield__label" for="email">Email</label>
+              <input class="mdl-textfield__input" type="email" name="email" [ngModel]="user.email" #email="ngModel" requried pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                  (ngModelChange)="user.email = $event" (change)="check()">
+              <div class="mdl-textfield__error">
+                <div [hidden]="email.valid || (email.pristine && !form.submitted)">
+                  Email is required and format should be <i>john@doe.com</i>.
+                </div>
               </div>
             </div>
-          </div>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;padding-left:1%;">
-          <i class="mdl-textfield__icon  material-icons" style="">phone</i>
-          <label class="mdl-textfield__label" for="phone">Phone</label>
-          <input class="mdl-textfield__input" type="text" id="phone" [(ngModel)]="user.phone" name="phone" #phone="ngModel"  requried pattern="(7|8|9)\d{9}" (ngModelChange)="user.phone = $event">
-            <div class="mdl-textfield__error">
-              <div [hidden]="phone.valid || (phone.pristine && !form.submitted)">
-                Please enter valid Phone Number.
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+              <i class="mdl-textfield__icon  material-icons" style="">phone</i>
+              <label class="mdl-textfield__label" for="phone">Phone</label>
+              <input class="mdl-textfield__input" type="text" id="phone" [(ngModel)]="user.phone" name="phone" #phone="ngModel" requried pattern="(7|8|9)\d{9}" (ngModelChange)="user.phone = $event" (change)="check()">
+              <div class="mdl-textfield__error">
+                <div [hidden]="phone.valid || (phone.pristine && !form.submitted)">
+                  Please enter valid Phone Number.
+                </div>
               </div>
             </div>
-        </div>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:49%;">
-          <i class="mdl-textfield__icon  material-icons" style="">lock</i>
-          <input class="mdl-textfield__input" type="password" id="password" reverse="true"  #password="ngModel" requried [(ngModel)]="user.password"
-          name="password" pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$" (ngModelChange)="user.password = $event" >
-          <label class="mdl-textfield__label" for="userpass">Password</label>
-            <div class="mdl-textfield__error">
-              <div [hidden]="password.valid || (password.pristine && !form.submitted)">
-                Password must have at least 6 characters,and a number.
-              </div>
+            <table style="width:100%;" border="0" cellspacing="0" cellpadding="0" class="full-width">
+              <tr style="width:100%;">
+                <td>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100% ! important;;">
+                    <i class="mdl-textfield__icon  material-icons" style="">lock</i>
+                    <input class="mdl-textfield__input" type="password" id="password" reverse="true" #password="ngModel" requried [(ngModel)]="user.password" name="password" pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$" (ngModelChange)="user.password = $event" (change)="check()">
+                    <label class="mdl-textfield__label" for="userpass">Password</label>
+                    <div class="mdl-textfield__error">
+                      <div [hidden]="password.valid || (password.pristine && !form.submitted)">
+                        Password must have at least 6 characters,and a number.
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100% ! important;">
+                    <i class="mdl-textfield__icon  material-icons" style="margin-left:2%;">verified_user</i>
+                    <input class="mdl-textfield__input" type="password" id="confirmPassword" reverse="false" #confirmPassword="ngModel" requried [ngModel]="user.confirmPassword" name="confirmPassword" validateEqual="password" requried autocomplete="off" (ngModelChange)="user.confirmPassword = $event"
+                        (change)="check()">
+                    <label class="mdl-textfield__label" for="confirmPassword">Confirm password</label>
+                    <div style="color:red;font-size:12px;">
+                      <div [hidden]="confirmPassword.valid || (confirmPassword.pristine && !form.submitted)">
+                        Password mismatch.
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label" style="width:100%;">
+              <i class="mdl-textfield__icon  material-icons" style="">work</i>
+              <select id="role" class="mdl-selectfield__select" (change)="setRole($event.target.value)">
+                          <option disabled></option>
+                          <option *ngFor="let p of roles" [value]="p"  >{{p}}</option>
+                        </select>
+              <label class="mdl-selectfield__label" for="gender">Company Type</label>
             </div>
-        </div>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:49%;">
-            <i class="mdl-textfield__icon  material-icons" style="">verified_user</i>
-          <input class="mdl-textfield__input" type="password" id="confirmPassword" reverse="false" #confirmPassword="ngModel" requried [ngModel]="user.confirmPassword" name="confirmPassword"
-            validateEqual="password"  requried  autocomplete="off" (ngModelChange)="user.confirmPassword = $event">
-    	<label class="mdl-textfield__label"  for="confirmPassword">Confirm password</label>
-            <div style="color:red;font-size:12px;">
-              <div [hidden]="confirmPassword.valid || (confirmPassword.pristine && !form.submitted)" >
-                Password mismatch.
-              </div>
+            <table style="width:100%;" border="0" cellspacing="0" cellpadding="0" class="full-width" [hidden]="!showBeneficieryField">
+              <tr style="width:100%;">
+                <td>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100% ! important;">
+                    <i class="mdl-textfield__icon  material-icons" style="">credit_card</i>
+                    <input class="mdl-textfield__input" type="text" id="accountNumber" #accountNumber="ngModel" [(ngModel)]="user.accountNumber" name="accountNumber" requried (ngModelChange)="user.accountNumber = $event" minlength="5" pattern="[0-9]*" (change)="check()"
+                    />
+                    <label class="mdl-textfield__label" for="accountNumber">AccountNo</label>
+                    <div class="mdl-textfield__error">
+                      <div [hidden]="!accountNumber.valid || (accountNumber.pristine && !form.submitted && accountNumber.touched)">
+                        Invalid Account Number
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100% ! important;">
+                    <i class="mdl-textfield__icon  material-icons" style="margin-left:2%;">account_balance</i>
+                    <input class="mdl-textfield__input" type="text" id="bankName" #bankName="ngModel" pattern="[A-Za-z]*" requried [(ngModel)]="user.bankName" name="bankName" (ngModelChange)="user.bankName = $event" (change)="check()" />
+                    <label class="mdl-textfield__label" for="BankName">Bank Name</label>
+                    <div class="mdl-textfield__error">
+                      <div [hidden]="(!bankName.valid || (bankName.pristine && !form.submitted))">
+                        Invalid Bank Name
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <div class="mdl-card__actions">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored " [disabled]="" type="submit">Register</button>
             </div>
-       </div>
 
-        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label" style="width:100%;">
-          <i class="mdl-textfield__icon  material-icons" style="">work</i>
-          <select id="role" class="mdl-selectfield__select" (change)="setRole($event.target.value)" >
-            <option></option>
-            <option *ngFor="let p of roles" [value]="p"  >{{p}}</option>
-          </select>
-            <label class="mdl-selectfield__label" for="gender">Company Type</label>
+          </form>
         </div>
-
-        <div [hidden]="!show" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:49%;" >
-            <i class="mdl-textfield__icon  material-icons" style="">credit_card</i>
-          <input class="mdl-textfield__input"  type="text" id="accountNumber" #accountNumber="ngModel"
-          [(ngModel)]="user.accountNumber"  name="accountNumber" requried (ngModelChange)="user.accountNumber = $event" minlength="5" pattern="[0-9]*"/>
-          <label class="mdl-textfield__label" for="accountNumber">AccountNo</label>
-          <div class="mdl-textfield__error">
-            <div [hidden]="!accountNumber.valid || (accountNumber.pristine && !form.submitted && accountNumber.touched)">
-              Invalid Account Number
-            </div>
-          </div>
-        </div>
-
-        <div [hidden]="!show" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:49%;">
-            <i class="mdl-textfield__icon  material-icons" style="">account_balance</i>
-          <input class="mdl-textfield__input" type="text" id="bankName" #bankName="ngModel"  pattern="[A-Za-z]*" requried [(ngModel)]="user.bankName" name="bankName"  (ngModelChange)="user.bankName = $event"  />
-          <label class="mdl-textfield__label" for="BankName">Bank Name</label>
-          <div class="mdl-textfield__error">
-            <div [hidden]="(!bankName.valid || (bankName.pristine && !form.submitted))">
-              Invalid Bank Name
-            </div>
-          </div>
-        </div>
-
-        <div class="mdl-card__actions mdl-card--border">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored " [disabled]="" type="submit">Register</button>
-        </div>
-
-      </form>
+      </div>
     </div>
   </div>
 </div>
