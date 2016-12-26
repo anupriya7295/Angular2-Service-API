@@ -1,0 +1,14 @@
+@import url('open-sans.css');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+* {
+  font-family: "Open Sans";
+}
+
+body {
+  background-image: url('../img/back1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+/*rgba(73,155,234,1) */

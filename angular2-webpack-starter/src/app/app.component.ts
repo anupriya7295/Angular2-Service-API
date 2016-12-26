@@ -20,7 +20,6 @@ import { AppState } from './app.service';
 })
 export class AppComponent {
 
-
   constructor(
     public appState: AppState) {
 

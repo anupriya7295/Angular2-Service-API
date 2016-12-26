@@ -5,6 +5,7 @@
   z-index: auto;
 }
 
+
 /*.mdl-textfield__label__icon {
    position: absolute;
 
@@ -23,7 +24,7 @@
   color: rgba(0, 0, 0, 0.26) !important;
 }
 
-.mdl-textfield__icon ~ * {
+.mdl-textfield__icon~* {
   margin-left: 48px;
   width: calc(100% - 48px);
 }
@@ -35,11 +36,21 @@
 .mdl-textfield .mdl-textfield__input .mdl-textfield__icon {
   color: green !important;
 }
+
 .mdl-textfield .mdl-textfield__input {
   font-family: 'Open Sans';
 }
 
 button[disabled] {
   opacity: .5;
-  color:blue;
+  color: blue;
+}
+
+.custom_error {
+  color: red;
+  position: absolute;
+  font-size: 10px;
+  margin-top: 3px;
+  display: block;
+  visibility: visible;
 }

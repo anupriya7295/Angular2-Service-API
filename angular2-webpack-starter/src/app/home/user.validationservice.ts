@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class HomeValidationService {
+export class UserValidationService {
 
   checkIfNameValid(value: string) {
     if (value.match(/[A-Za-z *]/)) {

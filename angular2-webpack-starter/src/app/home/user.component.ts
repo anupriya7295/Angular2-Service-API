@@ -1,22 +1,19 @@
 import { Component } from '@angular/core';
 import { AppState } from '../app.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
+import {Http, Response} from '@angular/http';
 //Our userdefined services
 import { UserService } from './user.service';
-import { HomeValidationService } from './home.validationservice';
-
+import { UserValidationService } from './user.validationservice';
 @Component({
-  selector: 'home',
-  styleUrls: ['./home.component.css'],
-  templateUrl: './home.component.html'
+  selector: 'loginpage',
+  styleUrls: ['./user.component.css'],
+  templateUrl: './user.component.html'
 })
-
-export class HomeComponent {
+export class UserComponent {
 
   roles = ["Contractor", "Funder", "Beneficiery"];
   showBeneficieryField: boolean = false;
-
   return_value: boolean = false
 
   nameValid: boolean = false;
@@ -28,6 +25,9 @@ export class HomeComponent {
   accountnumberValid: boolean = false;
   banknameValid: boolean = false;
 
+  response: any;
+  errorMessage: string;;
+  isLoading: boolean;
   user = {
     name: '',
     email: '',
@@ -41,7 +41,7 @@ export class HomeComponent {
   };
 
   // TypeScript public modifiers
-  constructor(public appState: AppState, private formBuilder: FormBuilder, private UserService: UserService, private HomeValidationService: HomeValidationService) {
+  constructor(public appState: AppState, private formBuilder: FormBuilder, private UserService: UserService, private UserValidationService: UserValidationService) {
 
   }
 
@@ -51,11 +51,9 @@ export class HomeComponent {
   }
 
   logForm() {
-    console.log(this.user);
+    // console.log(this.user);
     //this.UserService.save(this.user);
-    this.UserService.getData().subscribe(res =>{
-      console.log(res);
-    });
+    this.UserService.getData();
   }
 
   setRole(rolevalue) {
@@ -68,15 +66,16 @@ export class HomeComponent {
     }
     this.check();
   }
+
   check() {
-    this.nameValid = this.HomeValidationService.checkIfNameValid(this.user.name);
-    this.emailValid = this.HomeValidationService.checkIfValidEmail(this.user.email);
-    this.phoneValid = this.HomeValidationService.checkIfValidPhoneNumber(this.user.phone);
-    this.passwordValid = this.HomeValidationService.checkIfValidPassword(this.user.password);
-    this.confirmpasswordValid = this.HomeValidationService.checkIfPasswordEqual(this.user.password, this.user.confirmPassword);
+    this.nameValid = this.UserValidationService.checkIfNameValid(this.user.name);
+    this.emailValid = this.UserValidationService.checkIfValidEmail(this.user.email);
+    this.phoneValid = this.UserValidationService.checkIfValidPhoneNumber(this.user.phone);
+    this.passwordValid = this.UserValidationService.checkIfValidPassword(this.user.password);
+    this.confirmpasswordValid = this.UserValidationService.checkIfPasswordEqual(this.user.password, this.user.confirmPassword);
     this.roleValid = (this.user.role != '');
-    this.accountnumberValid = this.HomeValidationService.checkIfValidAccountNumber(this.user.accountNumber);
-    this.banknameValid = this.HomeValidationService.checkIfNameValid(this.user.bankName);
+    this.accountnumberValid = this.UserValidationService.checkIfValidAccountNumber(this.user.accountNumber);
+    this.banknameValid = this.UserValidationService.checkIfNameValid(this.user.bankName);
 
     this.return_value = (this.nameValid && this.emailValid && this.phoneValid && this.passwordValid && this.confirmpasswordValid && this.roleValid);
 
