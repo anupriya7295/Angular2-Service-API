@@ -25,7 +25,7 @@
 }
 
 .mdl-textfield__icon~* {
-  margin-left: 48px;
+  margin-left: 36px;
   width: calc(100% - 48px);
 }
 
@@ -54,3 +54,23 @@ button[disabled] {
   display: block;
   visibility: visible;
 }
+
+/*.mdl-textfield{
+  padding: 18px 0;
+}*/
+.mdl-card__title{
+  padding:15px;
+}
+.mdl-card__title-text{
+  font-size: 18px;
+  font-family: 'Open Sans';
+}
+.mdl-textfield__input    {
+  font-size: 14px;
+}
+ .mdl-textfield__label {
+   font-size: 14px;
+ }
+ .mdl-button {
+   float:right;
+ }
