@@ -73,4 +73,5 @@ button[disabled] {
  }
  .mdl-button {
    float:right;
+   font-family: 'Open Sans';
  }
