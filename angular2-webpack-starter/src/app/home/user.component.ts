@@ -51,9 +51,9 @@ export class UserComponent {
   }
 
   logForm() {
-    // console.log(this.user);
-    //this.UserService.save(this.user);
-    this.UserService.getData();
+    console.log(this.user);
+    this.UserService.save(this.user);
+    //this.UserService.getData();
   }
 
   setRole(rolevalue) {
