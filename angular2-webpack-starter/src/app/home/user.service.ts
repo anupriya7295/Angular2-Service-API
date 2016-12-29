@@ -1,25 +1,38 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers} from '@angular/http';
+import { Component, OnInit, OnDestroy, Injectable } from '@angular/core';
+import { Http, Response, Headers, Jsonp, URLSearchParams, QueryEncoder} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import {Jsonp} from '@angular/http';
-import {URLSearchParams, QueryEncoder} from '@angular/http';
+
 import global_constant = require('../constant/global_constant.ts');
 
+/**
+ * user.service.ts
+ * @author Anupriya V
+ * The user.service.ts provides service for user.component.ts
+ */
 @Injectable()
 export class UserService {
-  // private baseUrl: string = 'http://swapi.co/api';
-  //  private baseUrl: string = 'http://demo.radaptive.com:6080/api?action=query&username=superuser&password=superuser&
-  //                              queryName=GET_PROJECTS_BY_STATUS&status=open&retFormat=json&keyValuePair=yes&endLimit=100';
   response: any;
+
+  /**
+   * @constructor
+   *
+   * Service required for userservice is injected here for reference (Dependency Injection)
+   */
   constructor(private http: Http, private Jsonp: Jsonp) {
 
   }
 
-  save(user: any) {
-
-    console.log(JSON.stringify(user))
-    console.log(user.name);
+  /**
+   * @method saveUser
+   * @param user   user object
+   * @return string  return success when new user insert in to database
+   *                         failed when action fails
+   *
+   * saveUser method insert new user into database by calling create user api.
+   */
+  saveUser(user: any) {
+    console.log("inside saveUser service");
+    console.log(JSON.stringify(user));
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('individualFirstName', user.name);
     urlSearchParams.append('emailAddress', user.email);
@@ -27,10 +40,9 @@ export class UserService {
     urlSearchParams.append('bankAccNo', user.accountNumber);
     urlSearchParams.append('accountId', user.email);
     urlSearchParams.append('userType', user.role);
-    urlSearchParams.append('individualLastName','priya');
+    urlSearchParams.append('individualLastName', 'priya');
     let data = urlSearchParams.toString();
-
-    //console.log(this.Jsonp.request(global_constant.url+data,{headers: this.getHeaders()}))
+    //calling api to insert new user
     this.Jsonp.request(global_constant.url + data, { headers: this.getHeaders() })
       .map((res: Response) => res.json())
       .subscribe((res: Response) => {
@@ -47,11 +59,16 @@ export class UserService {
         console.log("getData function loaded correctl");
       }
       );
-    //let response$ = this.http.get(`${this.baseUrl}`);
-
   }
 
+  /**
+   * @method getData
+   * @return object  return list of object
+   *
+   * getData method retrieves all user by calling api.
+   */
   getData() {
+    //calling api to retrieve data from server.
     this.Jsonp.request(global_constant.baseUrl, { headers: this.getHeaders() })
       .map((res: Response) => res.json())
       .subscribe((res: Response) => {
@@ -68,13 +85,17 @@ export class UserService {
         console.log("getData function loaded correctl");
       }
       );
-
   }
 
+  /**
+   * @method getHeaders
+   * @return headers  return headers for api request.
+   *
+   * getHeaders method return headers to make api call.
+   */
   private getHeaders() {
     let headers = new Headers();
     headers.append('crossOrigin', 'true');
-    // headers.append('method', 'post');
     return headers;
   }
 }

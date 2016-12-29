@@ -1,20 +1,27 @@
 import { Component } from '@angular/core';
-import { AppState } from '../app.service';
+//import { AppState } from '../app.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {Http, Response} from '@angular/http';
+
 //Our userdefined services
 import { UserService } from './user.service';
 import { UserValidationService } from './user.validationservice';
+
 @Component({
   selector: 'loginpage',
   styleUrls: ['./user.component.css'],
   templateUrl: './user.component.html'
 })
-export class UserComponent {
 
+/**
+ * user.component.ts
+ * @author Anupriya V
+ * The user.component.ts act as controller for mentioned templateUrl.
+ */
+export class UserComponent {
   roles = ["Contractor", "Funder", "Beneficiery"];
   showBeneficieryField: boolean = false;
-  return_value: boolean = false
+  return_value: boolean = false //used for HomeUseralidationservice
 
   nameValid: boolean = false;
   emailValid: boolean = false;
@@ -25,9 +32,6 @@ export class UserComponent {
   accountnumberValid: boolean = false;
   banknameValid: boolean = false;
 
-  response: any;
-  errorMessage: string;;
-  isLoading: boolean;
   user = {
     name: '',
     email: '',
@@ -37,25 +41,40 @@ export class UserComponent {
     accountNumber: '',
     bankName: '',
     role: '',
-
   };
 
-  // TypeScript public modifiers
-  constructor(public appState: AppState, private formBuilder: FormBuilder, private UserService: UserService, private UserValidationService: UserValidationService) {
+  /**
+   * @constructor
+   *
+   * Service required for UserComponent is injected here for reference (Dependency Injection).
+   */
+  constructor(private formBuilder: FormBuilder, private UserService: UserService, private UserValidationService: UserValidationService) {
 
   }
 
+  /**
+   * ngOnInit is method used to do some prior condition for loading page.
+   */
   ngOnInit() {
     console.log('hello `Home` component');
-
   }
 
-  logForm() {
+  /**
+   * @method createUser
+   *
+   * createUser method create new user by calling UserService saveUser method.
+   */
+  createUser() {
     console.log(this.user);
-    this.UserService.save(this.user);
-    //this.UserService.getData();
+    this.UserService.saveUser(this.user);
   }
 
+  /**
+   * @method setRole
+   * @param rolevalue   user role
+   *
+   * setRole method set both user role and showBeneficieryField value based on the user role.
+   */
   setRole(rolevalue) {
     this.user.role = rolevalue;
     this.user.role = rolevalue;
@@ -67,6 +86,13 @@ export class UserComponent {
     this.check();
   }
 
+  /**
+   * @method check
+   * @return boolean  return true if form valid
+   *                          else false
+   *
+   * check method disable or enable  submit button.
+   */
   check() {
     this.nameValid = this.UserValidationService.checkIfNameValid(this.user.name);
     this.emailValid = this.UserValidationService.checkIfValidEmail(this.user.email);

@@ -12,16 +12,13 @@ import { AppState } from './app.service';
 
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.component.css'
-  ],
+  styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html'
 
 })
 export class AppComponent {
 
-  constructor(
-    public appState: AppState) {
+  constructor(public appState: AppState) {
 
   }
 

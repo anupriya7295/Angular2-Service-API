@@ -1,16 +1,9 @@
-/*styles for home content only*/
+/*styles for user.component.html only*/
 
 .mdl-card {
   overflow: visible;
   z-index: auto;
 }
-
-
-/*.mdl-textfield__label__icon {
-   position: absolute;
-
-   top: 20px;
-}*/
 
 .mdl-textfield__icon {
   width: 32px;
@@ -55,23 +48,24 @@ button[disabled] {
   visibility: visible;
 }
 
-/*.mdl-textfield{
-  padding: 18px 0;
-}*/
-.mdl-card__title{
-  padding:15px;
+.mdl-card__title {
+  padding: 15px;
 }
-.mdl-card__title-text{
+
+.mdl-card__title-text {
   font-size: 18px;
   font-family: 'Open Sans';
 }
-.mdl-textfield__input    {
+
+.mdl-textfield__input {
   font-size: 14px;
 }
- .mdl-textfield__label {
-   font-size: 14px;
- }
- .mdl-button {
-   float:right;
-   font-family: 'Open Sans';
- }
+
+.mdl-textfield__label {
+  font-size: 14px;
+}
+
+.mdl-button {
+  float: right;
+  font-family: 'Open Sans';
+}
