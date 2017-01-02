@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 import { UserValidationService } from './user.validationservice';
 
 @Component({
-  selector: 'loginpage',
+//  selector: 'loginpage',
   styleUrls: ['./user.component.css'],
   templateUrl: './user.component.html'
 })
