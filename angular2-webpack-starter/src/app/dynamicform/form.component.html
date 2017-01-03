@@ -1,13 +1,21 @@
-<div style="padding:1%;margin-top:2%;">
-  <div class="mdl-card mdl-shadow--6dp" style="width:50%;margin:auto;margin-top:3%;">
+<div style="padding:1%;">
+  <div class="mdl-card mdl-shadow--6dp" style="width:50%;margin:auto;">
 
     <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
       <h1 class="mdl-card__title-text">{{formdata.name}}</h1>
     </div>
 
     <div class="mdl-card__supporting-text" style="overflow: visible;">
-      <form #form="ngForm" novalidate (ngSubmit)="createEntity()">
-        <div *ngFor="let data of formdata.component">
+
+      <form #form="ngForm" novalidate (ngSubmit)="this[formdata.function]()">
+
+        <div class="mdl-file mdl-js-file mdl-file--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+
+          <input type="file" name="avatar" id="avatar">
+          <label class="mdl-file__label" for="avatar">Avatar</label>
+        </div>
+
+        <div *ngFor="let data of formdata.fields">
           <div [ngSwitch]="[data.type]">
 
             <div *ngSwitchCase="'text'" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
@@ -81,6 +89,8 @@
               <label class="mdl-selectfield__label">{{data.label}}</label>
             </div>
 
+
+
             <div *ngSwitchCase="'checkbox'" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <i class="mdl-textfield__icon  material-icons" style="">
                  <img  *ngIf="data.icon"src="./assets/SVG/{{data.icon}}" style="width: 17px;margin-bottom:14px;"/>
@@ -118,10 +128,14 @@
               </table>
             </div>
 
+            <div *ngSwitchCase="'submit'" class="mdl-card__actions">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">{{data.name}}</button>
+            </div>
           </div>
           <!--end of ngSwitch-->
         </div>
-        <!-- end of form fata loop -->
+        <!-- end of form data loop -->
+
         <div>{{entity | json}}</div>
       </form>
     </div>

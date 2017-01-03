@@ -7,6 +7,8 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { FormioModule } from 'ng2-formio';
 import { CommonModule } from '@angular/common';
+import { MultiSelectField, Option } from 'react-mdl-extra';
+
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -46,6 +48,7 @@ type StoreType = {
     UserComponent,
     DynamicFormComponent,
     EqualValidator,
+
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -55,6 +58,7 @@ type StoreType = {
     JsonpModule,
     FormioModule,
     CommonModule,
+    
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

@@ -147,7 +147,10 @@ module.exports = function (options) {
           test: /\.(jpg|png|gif)$/,
           use: 'file-loader'
         },
-
+        {
+                  test: /\.scss$/,
+                  loaders: ['style-loader', 'css-loader', 'sass-loader']
+        }
       ],
 
     },
