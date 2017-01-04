@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , AfterViewInit} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 // import { MultiSelectField, Option } from 'react-mdl-extra';
 import React from 'react';
@@ -19,6 +19,12 @@ import Portal from 'react-portal';
 export class DynamicFormComponent {
 
   entity = {};
+  check:any;
+  getcountry(event:any){
+    console.log(event);
+    console.log(this.check.indexOf(event));
+    console.log(this.check);
+  }
 
   formdata = {
     name: 'Customer',

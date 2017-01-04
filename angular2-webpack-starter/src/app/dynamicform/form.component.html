@@ -9,11 +9,43 @@
 
       <form #form="ngForm" novalidate (ngSubmit)="this[formdata.function]()">
 
-        <div class="mdl-file mdl-js-file mdl-file--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+        <div class="mdl-file mdl-js-file mdl-file--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;margin-left:6%;">
 
-          <input type="file" name="avatar" id="avatar">
-          <label class="mdl-file__label" for="avatar">Avatar</label>
+          <input type="file" name="avatar" id="avatar" style="margin-left:6%;">
+          <label class="mdl-file__label" for="avatar">Choose file</label>
         </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " style="width:100%;">
+          <i class="mdl-textfield__icon  material-icons" style="">
+            lock
+          </i>
+          <!-- <input class="mdl-textfield__input" id="country" #{{country="ngModel" [(ngModel)]="country" name="country" type="text" tabIndex="-1" (change)="getcountry($event)" /> -->
+          <input class="mdl-textfield__input" type="text" id="country" tabIndex="-1" />
+          <label class="mdl-textfield__label" for="country">Country</label>
+          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="country">
+
+            <li class="mdl-menu__item" data-val="BLR" (click)="getcountry('blr')">
+              <span class="mdl-list__item-secondary-action">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+                  <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+                </label>
+              </span>
+              <span class="mdl-list__item-primary-content">Belarus</span>
+
+            </li>
+            <li class="mdl-menu__item" data-val="RUS" (click)="getcountry('rus')">
+              <span class="mdl-list__item-primary-content">Russia</span>
+              <span class="mdl-list__item-secondary-action">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+                  <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+                </label>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+
+
 
         <div *ngFor="let data of formdata.fields">
           <div [ngSwitch]="[data.type]">

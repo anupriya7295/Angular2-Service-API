@@ -72,8 +72,13 @@ button[disabled] {
 }
 
 .mdl-textfield{
-  padding:18px 0;
+  padding:19px 0;
 }
 .mdl-card__suppoorting-text{
   line-height: 9px;
+}
+
+.mdl-file .mdl-button {
+    left:0;
+    margin-left: -6%;
 }
