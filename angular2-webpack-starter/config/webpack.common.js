@@ -36,7 +36,7 @@ const METADATA = {
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function (options) {
+module.exports = function(options) {
   isProd = options.env === 'production';
   return {
 
@@ -58,8 +58,8 @@ module.exports = function (options) {
     entry: {
 
       'polyfills': './src/polyfills.browser.ts',
-      'vendor':    './src/vendor.browser.ts',
-      'main':      './src/main.browser.ts',
+      'vendor': './src/vendor.browser.ts',
+      'main': './src/main.browser.ts',
 
 
     },
@@ -146,10 +146,9 @@ module.exports = function (options) {
         {
           test: /\.(jpg|png|gif)$/,
           use: 'file-loader'
-        },
-        {
-                  test: /\.scss$/,
-                  loaders: ['style-loader', 'css-loader', 'sass-loader']
+        }, {
+          test: /\.scss$/,
+          loaders: ['style-loader', 'css-loader', 'sass-loader']
         }
       ],
 
@@ -161,6 +160,12 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
+      }),
+      
       new AssetsPlugin({
         path: helpers.root('dist'),
         filename: 'webpack-assets.json',
@@ -210,10 +215,12 @@ module.exports = function (options) {
        *
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
-      new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' },
-        { from: 'src/meta'}
-      ]),
+      new CopyWebpackPlugin([{
+        from: 'src/assets',
+        to: 'assets'
+      }, {
+        from: 'src/meta'
+      }]),
 
 
       /*
@@ -298,6 +305,11 @@ module.exports = function (options) {
         helpers.root('node_modules/@angular/core/src/facade/math.js')
       ),
     ],
+
+    performance: {
+      hints: false
+    },
+
 
     /*
      * Include polyfills or mocks for various node stuff

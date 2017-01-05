@@ -174,5 +174,6 @@
   </div>
 </div>
 
-<!-- <formio [form]="form"></formio> -->
-<!-- <formio src="https://pjmfogrfqptslvi.form.io/test"></formio> -->
+<formio [form]="render" (submit)="save($event)"></formio>
+<formio src="https://pjmfogrfqptslvi.form.io/test">
+</formio>

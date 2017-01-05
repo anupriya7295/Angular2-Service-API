@@ -1,10 +1,7 @@
-import { Component , AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-// import { MultiSelectField, Option } from 'react-mdl-extra';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Portal from 'react-portal';
-
+import { FormioModule } from 'ng2-formio';
+import global_constant = require('../constant/global_constant.ts');
 
 @Component({
   styleUrls: ['./form.component.css'],
@@ -19,17 +16,103 @@ import Portal from 'react-portal';
 export class DynamicFormComponent {
 
   entity = {};
-  check:any;
-  getcountry(event:any){
+  check: any;
+  getcountry(event: any) {
     console.log(event);
     console.log(this.check.indexOf(event));
     console.log(this.check);
   }
 
+  save(event: any) {
+    console.log(event);
+  }
+
+  render = global_constant.render;
+  // render = {
+  //   title: 'My Test Form',
+  //   components: [
+  //     {
+  //       "type": "textfield",
+  //       "input": true,
+  //       "tableView": true,
+  //       "inputType": "text",
+  //       "inputMask": "",
+  //       "label": "First Name",
+  //       "key": "firstName",
+  //       "placeholder": "Enter your first name",
+  //       "prefix": "",
+  //       "suffix": "",
+  //       "multiple": false,
+  //       "defaultValue": "",
+  //       "protected": false,
+  //       "unique": false,
+  //       "persistent": true,
+  //       "validate": {
+  //         "required": true,
+  //         "minLength": 2,
+  //         "maxLength": 10,
+  //         "pattern": "",
+  //         "custom": "",
+  //         "customPrivate": false
+  //       },
+  //       "conditional": {
+  //         "show": "",
+  //         "when": null,
+  //         "eq": ""
+  //       }
+  //     },
+  //     {
+  //       "type": "textfield",
+  //       "input": true,
+  //       "tableView": true,
+  //       "inputType": "text",
+  //       "inputMask": "",
+  //       "label": "Last Name",
+  //       "key": "lastName",
+  //       "placeholder": "Enter your last name",
+  //       "prefix": "",
+  //       "suffix": "",
+  //       "multiple": false,
+  //       "defaultValue": "",
+  //       "protected": false,
+  //       "unique": false,
+  //       "persistent": true,
+  //       "validate": {
+  //         "required": true,
+  //         "minLength": 2,
+  //         "maxLength": 10,
+  //         "pattern": "",
+  //         "custom": "",
+  //         "customPrivate": false
+  //       },
+  //       "conditional": {
+  //         "show": "",
+  //         "when": null,
+  //         "eq": ""
+  //       }
+  //     },
+  //
+  //     {
+  //       "input": true,
+  //       "label": "Submit",
+  //       "tableView": false,
+  //       "key": "submit",
+  //       "size": "md",
+  //       "leftIcon": "",
+  //       "rightIcon": "",
+  //       "block": false,
+  //       "action": "submit",
+  //       "disableOnInvalid": true,
+  //       "theme": "primary",
+  //       "type": "button"
+  //     },
+  //
+  //   ]
+  // }
   formdata = {
     name: 'Customer',
     id: '101',
-    function:"saveform",
+    function: "saveform",
     fields: [
       {
         name: 'Name',
@@ -41,7 +124,7 @@ export class DynamicFormComponent {
         errormessage: 'Username is required (minimum 5 characters).',
         pattern: '[A-Za-z]*',
         isRequired: 'true',
-        minLength:'5'
+        minLength: '5'
       },
       {
         name: 'Password',
@@ -59,11 +142,11 @@ export class DynamicFormComponent {
         label: 'Number',
         type: 'number',
         placeholder: 'Number',
-        icon:'line/add-circle-1.svg',
+        icon: 'line/add-circle-1.svg',
         id: 'Number',
         errormessage: 'min 2 max 8',
-        min:2,
-        max:8,
+        min: 2,
+        max: 8,
         isRequired: 'true'
       },
       {
@@ -85,66 +168,66 @@ export class DynamicFormComponent {
         placeholder: 'dropdown',
         icon: 'line/location-map-1.svg',
         id: 'dropdown',
-        options:['chennai','coimbatore','trichy','Bangalore','cochin','kerala','munnar']
+        options: ['chennai', 'coimbatore', 'trichy', 'Bangalore', 'cochin', 'kerala', 'munnar']
       },
       {
         name: 'checkbox',
         label: 'checkbox',
-        type:'checkbox',
+        type: 'checkbox',
         placeholder: 'dropdown',
         icon: 'line/user-add.svg',
         errormessage: 'gender required',
         isRequired: 'true',
-        options:['Male','Female']
+        options: ['Male', 'Female']
       },
       {
         name: 'multiselect',
         label: 'multiselect',
-        type:'multiselect',
+        type: 'multiselect',
         placeholder: 'multiselect',
         icon: 'line/user-add.svg',
         errormessage: 'gender required',
         isRequired: 'true',
-        options:['apple','banana','grapes','mango','passion']
+        options: ['apple', 'banana', 'grapes', 'mango', 'passion']
       },
       {
         name: 'radiobutton',
         label: 'radiobutton',
-        type:'radiobutton',
+        type: 'radiobutton',
         placeholder: 'radiobutton',
         icon: 'line/user-add.svg',
         id: '',
         errormessage: 'gender required',
         isRequired: 'true',
-        options:['Male','Female']
+        options: ['Male', 'Female']
       },
       {
         name: 'submit',
         label: 'submit',
-        type:'submit',
+        type: 'submit',
         placeholder: 'submit',
-        isdisabled:"true",
+        isdisabled: "true",
 
       }
     ]
   } //form object ends
 
-  saveform(){
+  saveform() {
     console.log("entity");
     console.log(this.entity);
   }
 
-  checkboxManagement(value : any,checked:any,type:any){
-    if(this.entity[type]){
-        this.checkboxService(value, checked, type);
+  checkboxManagement(value: any, checked: any, type: any) {
+    if (this.entity[type]) {
+      this.checkboxService(value, checked, type);
     } else {
-      this.entity[type]=[];
+      this.entity[type] = [];
       this.checkboxService(value, checked, type);
     }
   }
 
-  checkboxService(value : any,checked:any,type:any){
-    if(checked == true){
+  checkboxService(value: any, checked: any, type: any) {
+    if (checked == true) {
       this.entity[type].push(value);
     } else {
       this.entity[type].pop("value");
